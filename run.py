@@ -1,6 +1,6 @@
 import random, string
 import datetime
-from bottle import template, get, post, run, response, request, redirect, default_app
+from bottle import run, response, request, redirect, default_app
 from tinydb import TinyDB, Query
 
 DATABASE = 'database.json'
