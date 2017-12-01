@@ -1,11 +1,11 @@
 import random, string
 import datetime
-from bottle import run, response, request, redirect, default_app
+from bottle import get, post, run, response, request, redirect, default_app
 from tinydb import TinyDB, Query
 
 DATABASE = 'database.json'
 
-app = application = default_app()
+application = default_app()
 
 def clean_db():
     db = TinyDB(DATABASE)
@@ -15,8 +15,8 @@ def clean_db():
     res = db.search(query.date < r.timestamp())
     db.remove(doc_ids=[x.doc_id for x in res])
 
-@app.get('/')
-@app.get('/<token>')
+@get('/')
+@get('/<token>')
 def index(token=None):
     if not token:
         response.status = 400
@@ -39,7 +39,7 @@ def index(token=None):
     return redirect(res[0]['uri'])
 
 
-@app.post('/short/')
+@post('/short/')
 def short():
     uri = request.params.get('uri') or request.json.get('uri')
     if not uri:
