@@ -27,7 +27,7 @@ def index(token=None):
                         "method": "POST",
                         "params": "uri",
                         "description": "short uri"
-                        }
+                        },
                     "/<token>": {
                         "method": "GET",
                         "description": "redirect to uri identified by <token>"
