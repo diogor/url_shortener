@@ -20,7 +20,20 @@ def clean_db():
 def index(token=None):
     if not token:
         response.status = 400
-        return {"message": "What are you doing, son?"}
+        return {
+                "message": "What are you doing, son?",
+                "endpoins": {
+                    "/short": {
+                        "method": "POST",
+                        "params": "uri",
+                        "description": "short uri"
+                        }
+                    "/<token>": {
+                        "method": "GET",
+                        "description": "redirect to uri identified by <token>"
+                        }
+                    }
+                }
     db = TinyDB(DATABASE)
     query = Query()
     res = db.search(query.token == token.upper())
